@@ -10,18 +10,28 @@
 <section id="liste">
   <section> 
     {% for thing in things %}
-    <article class="{% if thing['name'].lower() == 'bier' %}bier{% endif %}">
+    <article 
+        class="
+            {% if thing['name'].lower() == 'beer' %}bier{% endif %}
+            {% if thing['name'].upper() == 'FREDERIKKWEE' %}gnome{% endif %}
+        ">
+      
       <header>{{ thing["name"] }}</header>
-
       <div>Cost$: {{ thing["cost"] }}</div>
 
-      {% if thing['name'].lower() == 'bier' %}
-      <!-- Bier-Animation wird nur bei Bier angezeigt -->
+      {% if thing['name'].lower() == 'beer' %}
       <div class="beer-animation">
-        🍺 Prost!
+        🍺 Cheers!
         <div class="bubbles">
           <span></span><span></span><span></span>
         </div>
+      </div>
+      {% endif %}
+
+      {% if thing['name'].upper() == 'FREDERIKKWEE' %}
+      <div class="gnome-animation">
+        🧙‍♂️ FREEDDDDIIII
+        <div class="gnome-bounce">🧝</div>
       </div>
       {% endif %}
 
@@ -31,12 +41,24 @@
   </section>
 </section>
 
-<!-- JS, um die Animation bei Klick zu starten -->
+<!-- JS -->
 <script>
   document.addEventListener("DOMContentLoaded", function() {
+    // Bier-Animation
     document.querySelectorAll("article.bier").forEach(function(el) {
       el.addEventListener("click", function() {
         const anim = el.querySelector(".beer-animation");
+        if (anim) {
+          anim.classList.add("active");
+          setTimeout(() => anim.classList.remove("active"), 3000);
+        }
+      });
+    });
+
+    // Gnome-Animation
+    document.querySelectorAll("article.gnome").forEach(function(el) {
+      el.addEventListener("click", function() {
+        const anim = el.querySelector(".gnome-animation");
         if (anim) {
           anim.classList.add("active");
           setTimeout(() => anim.classList.remove("active"), 3000);
