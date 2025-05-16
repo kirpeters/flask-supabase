@@ -1,0 +1,134 @@
+/* Grundlayout */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #eef2f5;
+  margin: 0;
+  padding: 0;
+}
+
+/* Überschrift */
+h1 {
+  text-align: center;
+  margin-top: 30px;
+  color: #2c3e50;
+  font-size: 2.5em;
+}
+
+/* Liste-Container */
+#liste {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Sektion mit den Artikeln */
+#liste section {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* Einzelner Artikel (als bunte Karte) */
+article {
+  background: linear-gradient(135deg, #ffffff, #f9fbfc);
+  border-left: 6px solid #3498db; /* Blaue Akzentleiste */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+article:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Header im Artikel */
+article header {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+/* Preisangabe */
+article p,
+article div {
+  font-size: 1em;
+  color: #34495e;
+  margin: 5px 0;
+}
+
+/* Footer optional */
+article footer {
+  margin-top: 15px;
+  font-size: 0.85em;
+  color: #95a5a6;
+}
+
+/* Optional: Farbliche Unterscheidung je nach Name oder Zufall */
+article:nth-child(3n + 1) {
+  border-left-color: #e67e22; /* Orange */
+}
+article:nth-child(3n + 2) {
+  border-left-color: #9b59b6; /* Lila */
+}
+article:nth-child(3n + 3) {
+  border-left-color: #1abc9c; /* Türkis */
+}
+.beer-animation {
+  display: none;
+  margin-top: 10px;
+  font-size: 1.2em;
+  color: #f39c12;
+  position: relative;
+}
+
+.beer-animation.active {
+  display: block;
+  animation: shake 0.3s ease-in-out 3;
+}
+
+/* Blasen-Effekt */
+.bubbles {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+.bubbles span {
+  display: block;
+  width: 8px;
+  height: 8px;
+  background-color: #f1c40f;
+  border-radius: 50%;
+  animation: rise 1.5s infinite ease-in;
+}
+
+.bubbles span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.bubbles span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes rise {
+  0% {
+      transform: translateY(0);
+      opacity: 1;
+  }
+  100% {
+      transform: translateY(-30px);
+      opacity: 0;
+  }
+}
+
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(3deg); }
+  50% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+  100% { transform: rotate(0deg); }
+}

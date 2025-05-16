@@ -1,0 +1,48 @@
+{% extends "pages/base.jinja" %}
+
+{% block title %}
+ Hello, World!
+{% endblock %}
+
+{% block content %}
+<h1>Hellooo!!!</h1>
+
+<section id="liste">
+  <section> 
+    {% for thing in things %}
+    <article class="{% if thing['name'].lower() == 'bier' %}bier{% endif %}">
+      <header>{{ thing["name"] }}</header>
+
+      <div>Cost$: {{ thing["cost"] }}</div>
+
+      {% if thing['name'].lower() == 'bier' %}
+      <!-- Bier-Animation wird nur bei Bier angezeigt -->
+      <div class="beer-animation">
+        🍺 Prost!
+        <div class="bubbles">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+      {% endif %}
+
+      <footer></footer>
+    </article>
+    {% endfor %}
+  </section>
+</section>
+
+<!-- JS, um die Animation bei Klick zu starten -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll("article.bier").forEach(function(el) {
+      el.addEventListener("click", function() {
+        const anim = el.querySelector(".beer-animation");
+        if (anim) {
+          anim.classList.add("active");
+          setTimeout(() => anim.classList.remove("active"), 3000);
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}

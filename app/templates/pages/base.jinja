@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Website{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            
+        </ul>
+    </nav>
+
+    <!-- Inhalt Bereich -->
+    <div id="content">
+        {% block content %}
+        <!-- Der dynamische Inhalt wird hier geladen -->
+        {% include 'pages/home.jinja' %}
+        {% endblock %}
+    </div>
+</body>
+</html>
